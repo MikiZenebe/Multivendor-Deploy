@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Email Verification</title>
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+        width: 100%;
+      }
+
+      .card {
+        border-radius: 10px;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .icon {
+        font-size: 64px;
+        margin-bottom: 20px;
+      }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+      .hideBtn {
+        display: none;
+      }
+
+      .showBtn {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: rgba(1, 116, 210, 0.971);
+        color: white;
+        margin-top: 10px;
+      }
+
+      .loginBtn {
+        background-color: #ea4d1b;
+        padding: 15px 20px;
+        text-decoration: none;
+        color: white;
+        border-radius: 15px;
+        font-weight: 600;
+      }
+
+      .class {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: white;
+        padding: 5rem;
+        border: 1px rgba(128, 128, 128, 0.466) solid;
+        border-radius: 15px;
+      }
+
+      #statusMessage {
+        font-size: 25px;
+      }
+    </style>
+
+    <body>
+      <div class="class">
+        <div class="icon">
+          <span id="statusIcon"></span>
+        </div>
+
+        <div id="statusMessage"></div>
+        <a href="http://localhost:5173/login" id="btn" class="loginBtn btn"
+          >Login to KeHager-Bet</a
+        >
+      </div>
+
+      <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get("message");
+        const status = urlParams.get("status");
+
+        const card = document.querySelector(".card");
+        const statusIcon = document.getElementById("statusIcon");
+        const statusMessage = document.getElementById("statusMessage");
+        const btn = document.querySelector("btn");
+
+        if (status === "success") {
+          statusIcon.innerHTML = "🤗🤗🤗";
+          statusMessage.textContent = message;
+          card.classList.add("success");
+          statusIcon.classList.add("success");
+          statusMessage.classList.add("success");
+          btn.classList.add("showBtn");
+        } else if (status === "error") {
+          statusIcon.innerHTML = "😔😔😔";
+          statusMessage.textContent = message;
+          card.classList.add("error");
+          statusIcon.classList.add("error");
+          statusMessage.classList.add("error");
+          btn.classList.add("hideBtn");
+        }
+      </script>
+    </body>
+  </head>
+</html>
