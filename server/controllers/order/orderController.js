@@ -388,7 +388,7 @@ class orderController {
         name: user?.name,
         tx_ref: `txn-${Date.now()}`,
         callback_url: `${process.env.APP_URL}/api/order/chapa-verify/${orderId}`,
-        return_url: `http://localhost:5173/order/success/${orderId}`,
+        return_url: `${process.env.CLIENT_URL}/order/success/${orderId}`,
       };
 
       // Initiate payment request to Chapa
