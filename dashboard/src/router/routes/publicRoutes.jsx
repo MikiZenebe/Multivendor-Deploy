@@ -4,20 +4,6 @@ import Register from "../../views/auth/Register";
 import AdminLogin from "../../views/auth/AdminLogin";
 import Home from "../../views/Home";
 import UnAuthorized from "../../views/UnAuthorized";
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-
-// eslint-disable-next-line react-refresh/only-export-components
-const PublicRoute = ({ element, restricted }) => {
-  const { userInfo } = useSelector((state) => state.auth);
-
-  // Redirect to Home if user is authenticated and accessing restricted routes (like login/register)
-  if (userInfo && restricted) {
-    return <Navigate to="/" replace />;
-  }
-
-  return element;
-};
 
 const publicRoutes = [
   {
@@ -26,11 +12,11 @@ const publicRoutes = [
   },
   {
     path: "/login",
-    element: <PublicRoute element={<Login />} restricted={true} />, // restricted for authenticated users
+    element: <Login />,
   },
   {
     path: "/register",
-    element: <PublicRoute element={<Register />} restricted={true} />, // restricted for authenticated users
+    element: <Register />,
   },
   {
     path: "/admin/login",

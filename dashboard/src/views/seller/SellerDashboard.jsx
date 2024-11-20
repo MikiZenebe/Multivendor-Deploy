@@ -112,7 +112,8 @@ const SellerDashboard = () => {
 
   useEffect(() => {
     dispatch(get_seller_dashboard_index_data());
-  }, []);
+  }, [dispatch]);
+
   return (
     <div className="px-2 md:px-7 py-5">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-7">

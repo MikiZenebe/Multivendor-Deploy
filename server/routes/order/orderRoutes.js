@@ -26,6 +26,7 @@ router.get(
   "/order/chapa-verify/:orderId",
   orderController.chapa_verifyTransaction
 );
+router.post("/webhooks/chapa", orderController.chapa_webhook);
 
 // --- admin
 router.get("/admin/orders", orderController.get_admin_orders);

@@ -11,7 +11,9 @@ export default function OAuth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { successMessage, errorMessage } = useSelector((state) => state.auth);
+  const { userInfo, successMessage, errorMessage } = useSelector(
+    (state) => state.auth
+  );
 
   const handleGoogleClick = async () => {
     const provider = new GoogleAuthProvider();
@@ -50,6 +52,12 @@ export default function OAuth() {
     if (errorMessage) {
       toast.error(errorMessage);
       dispatch(messageClear());
+    }
+
+    if (userInfo) {
+      navigate("/");
+      dispatch(messageClear());
+      return;
     }
   }, [successMessage, errorMessage]);
 

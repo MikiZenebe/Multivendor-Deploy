@@ -49,6 +49,7 @@ export const seller_login = createAsyncThunk(
     }
   }
 );
+
 export const logout = createAsyncThunk(
   "auth/logout",
   async ({ navigate, role }, { rejectWithValue, fulfillWithValue }) => {
@@ -56,9 +57,9 @@ export const logout = createAsyncThunk(
       const { data } = await api.get("/logout", { withCredentials: true });
       localStorage.removeItem("accessToken");
       if (role === "admin") {
-        navigate("/admin/login");
+        window.location.href = "/admin/login";
       } else {
-        navigate("/login");
+        window.location.href = "/login";
       }
 
       return fulfillWithValue(data);

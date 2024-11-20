@@ -15,8 +15,7 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin: [`${process.env.CLIENT_URL}`, `${process.env.DASHBOARD_URL}`],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: [`${process.env.CLIENT_URL}`, `http://localhost:3001`],
     credentials: true,
   })
 );

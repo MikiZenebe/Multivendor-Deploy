@@ -5,7 +5,7 @@ import AdminDashboard from "../../views/admin/AdminDashboard";
 import Orders from "../../views/admin/Orders";
 import Category from "../../views/admin/Category";
 import Sellers from "../../views/admin/Sellers";
-import PaymentRequest from "../../views/admin/PaymentRequest";
+// import PaymentRequest from "../../views/admin/PaymentRequest";
 import ChatSeller from "../../views/admin/ChatSeller";
 import OrderDetails from "../../views/admin/OrderDetails";
 import AllProducts from "../../views/admin/AllProducts";

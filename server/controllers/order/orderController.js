@@ -387,7 +387,8 @@ class orderController {
         email: user?.email,
         name: user?.name,
         tx_ref: `txn-${Date.now()}`,
-        callback_url: `${process.env.APP_URL}/api/order/chapa-verify/${orderId}`,
+        callback_url:
+          "https://8160-196-188-125-153.ngrok-free.app/api/webhooks/chapa",
         return_url: `${process.env.CLIENT_URL}/order/success/${orderId}`,
       };
 

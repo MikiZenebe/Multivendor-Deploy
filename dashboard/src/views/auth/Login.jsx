@@ -27,6 +27,7 @@ const Login = () => {
     e.preventDefault();
     dispatch(seller_login(state));
   };
+
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
@@ -37,11 +38,11 @@ const Login = () => {
       toast.error(errorMessage);
       dispatch(messageClear());
     }
-
     if (userInfo) {
       navigate("/");
     }
-  }, [successMessage, errorMessage]);
+  }, [dispatch, errorMessage, navigate, successMessage]);
+
   return (
     <div className="min-w-screen min-h-screen flex justify-center items-center">
       <div className="w-[350px] text-[#d0d2d6] p-2">
