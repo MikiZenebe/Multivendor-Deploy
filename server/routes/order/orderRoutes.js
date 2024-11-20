@@ -18,16 +18,6 @@ router.get("/order/confirm/:orderId", orderController.order_confirm);
 // Route to initiate Chapa payment
 router.post("/order/create-chapa", orderController.chapa_payment);
 
-// Route to handle Chapa callback (Chapa redirects here after payment)
-router.get("/order/chapa-callback", orderController.chapa_handle_callback);
-
-// Route to verify payment status for an order
-router.get(
-  "/order/chapa-verify/:orderId",
-  orderController.chapa_verifyTransaction
-);
-router.post("/webhooks/chapa", orderController.chapa_webhook);
-
 // --- admin
 router.get("/admin/orders", orderController.get_admin_orders);
 router.get("/admin/order/:orderId", orderController.get_admin_order);

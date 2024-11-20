@@ -387,8 +387,7 @@ class orderController {
         email: user?.email,
         name: user?.name,
         tx_ref: `txn-${Date.now()}`,
-        callback_url:
-          "https://8160-196-188-125-153.ngrok-free.app/api/webhooks/chapa",
+        callback_url: `http://localhost:5000/api/order/confirm/${orderId}`,
         return_url: `${process.env.CLIENT_URL}/order/success/${orderId}`,
       };
 
@@ -416,118 +415,6 @@ class orderController {
       }
     } catch (error) {
       console.error("Chapa payment initiation error:", error.message);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  };
-
-  chapa_verifyTransaction = async (req, res) => {
-    const { orderId } = req.params;
-    const chapaApiKey = process.env.CHAPA_SECRET_KEY;
-    try {
-      const order = await customerOrder.findById(orderId);
-      const user = await customerModel.findById(order?.customerId);
-
-      if (!order) return res.status(404).json({ message: "Order not found" });
-      const chapaResponse = await axios.get(
-        `${process.env.CHAPA_BASE_URL}/transaction/verify/${orderId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${chapaApiKey}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (
-        chapaResponse.data.status === "success" &&
-        chapaResponse.data.data.status === "success"
-      ) {
-        // Update order as paid
-        await customerOrder.findByIdAndUpdate(orderId, {
-          payment_status: "paid",
-          delivery_status: "pending",
-        });
-
-        // Decrease stock for each product
-        for (let product of order.products) {
-          await productModel.findByIdAndUpdate(product._id, {
-            $inc: { stock: -product.quantity },
-          });
-        }
-
-        const time = moment(Date.now()).format("L").split("/");
-        await myShopWallet.create({
-          amount: order.price,
-          month: time[0],
-          year: time[2],
-        });
-        for (let item of order.products) {
-          await sellerWallet.create({
-            sellerId: item.sellerId.toString(),
-            amount: item.price,
-            month: time[0],
-            year: time[2],
-          });
-        }
-
-        // Now, send the purchase confirmation email to the buyer
-        await sendPurchaseConfirmationEmail(user, order, res);
-        res.status(200).json({ message: "Payment verified successfully" });
-      } else {
-        res.status(400).json({ message: "Payment not verified or failed" });
-      }
-    } catch (error) {
-      console.error("Chapa payment verification error:", error.message);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  };
-
-  chapa_handle_callback = async (req, res) => {
-    const { tx_ref, status } = req.query;
-    const chapaApiKey = process.env.CHAPA_SECRET_KEY;
-
-    try {
-      const chapaResponse = await axios.get(
-        `${process.env.CHAPA_BASE_URL}/transaction/verify/${tx_ref}`,
-        {
-          headers: {
-            Authorization: `Bearer ${chapaApiKey}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (
-        chapaResponse.data.status === "success" &&
-        chapaResponse.data.data.status === "success"
-      ) {
-        // Mark the order as paid
-        const order = await customerOrder.findOneAndUpdate(
-          { tx_ref },
-          { payment_status: "paid", delivery_status: "pending" },
-          { new: true }
-        );
-
-        // Notify customer of successful payment
-        const user = await customerModel.findById(order.customerId);
-        await sendPurchaseConfirmationEmail(user, order);
-
-        // Update wallets, etc.
-        this.updateWallets(order);
-
-        res
-          .status(200)
-          .json({ message: "Payment successful and order updated" });
-      } else {
-        // Payment was unsuccessful
-        await customerOrder.findOneAndUpdate(
-          { tx_ref },
-          { delivery_status: "cancelled" }
-        );
-        res.status(400).json({ message: "Payment unsuccessful" });
-      }
-    } catch (error) {
-      console.error("Chapa callback error:", error.message);
       res.status(500).json({ message: "Internal server error" });
     }
   };
