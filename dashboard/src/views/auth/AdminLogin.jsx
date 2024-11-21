@@ -9,7 +9,7 @@ import Logo from "../../assets/logo.png";
 const AdminLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userInfo, loader, errorMessage, successMessage } = useSelector(
+  const { loader, errorMessage, successMessage } = useSelector(
     (state) => state.auth
   );
   const [state, setSatate] = useState({
@@ -41,10 +41,6 @@ const AdminLogin = () => {
     if (successMessage) {
       toast.success(successMessage);
       dispatch(messageClear());
-      navigate("/");
-    }
-
-    if (userInfo) {
       navigate("/");
     }
   }, [errorMessage, successMessage]);

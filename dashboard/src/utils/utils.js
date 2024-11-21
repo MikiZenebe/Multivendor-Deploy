@@ -7,4 +7,4 @@ export const overrideStyle = {
   alignItems: "center",
 };
 
-export const socket = io(`${import.meta.env.VITE_API_URL}`);
+export const socket = io("https://multivendor-server-z8kg.onrender.com");

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { AiOutlineGoogle } from "react-icons/ai";
+import Logo from "../../assets/logo.png";
 import { PropagateLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
 import { overrideStyle } from "../../utils/utils";
@@ -46,14 +46,20 @@ const Register = () => {
     }
   }, [successMessage, errorMessage]);
   return (
-    <div className="min-w-screen min-h-screen flex justify-center items-center">
+    <div className="min-w-screen bg-[#F4F4F4] min-h-screen flex justify-center items-center">
       <div className="w-[350px] text-[#d0d2d6] my-10">
-        <div className="border border-[#EA4D1B] p-8 rounded-md">
-          <h2 className="text-xl mb-3 text-center text-[#EA4D1B] font-bold">
-            KeHager Bet Seller Panel
-          </h2>
+        <div className="border bg-white p-8 rounded-md">
+          <div className="h-[70px] flex justify-center items-center">
+            <div className="w-[180px] h-[50px]">
+              <img
+                className="w-full h-full object-cover"
+                src={Logo}
+                alt="image"
+              />
+            </div>
+          </div>
           <p className="text-sm mb-3 text-center text-gray-500">
-            Please register to be a Vendor
+            Please register to be a Seller
           </p>
           <form onSubmit={submit}>
             <div className="flex flex-col w-full gap-1 mb-3 text-gray-600">
@@ -61,7 +67,7 @@ const Register = () => {
               <input
                 onChange={inputHandle}
                 value={state.name}
-                className="px-3 py-2 outline-none border border-[#EA4D1B] bg-transparent rounded-md text-[#d0d2d6] focus:border-indigo-500 overflow-hidden"
+                className="px-3 py-2 outline-none border border-[#EA4D1B] bg-transparent rounded-md text-[#1f2229] focus:border-indigo-500 overflow-hidden"
                 type="text"
                 name="name"
                 placeholder="name"
@@ -74,7 +80,7 @@ const Register = () => {
               <input
                 onChange={inputHandle}
                 value={state.email}
-                className="px-3 py-2 outline-none border border-[#EA4D1B] bg-transparent rounded-md text-[#d0d2d6] focus:border-indigo-500 overflow-hidden"
+                className="px-3 py-2 outline-none border border-[#EA4D1B] bg-transparent rounded-md text-[#1f2229] focus:border-indigo-500 overflow-hidden"
                 type="email"
                 name="email"
                 placeholder="email"
@@ -87,7 +93,7 @@ const Register = () => {
               <input
                 onChange={inputHandle}
                 value={state.passwprd}
-                className="px-3 py-2 outline-none border border-[#EA4D1B] bg-transparent rounded-md text-[#d0d2d6] focus:border-indigo-500 overflow-hidden"
+                className="px-3 py-2 outline-none border border-[#EA4D1B] bg-transparent rounded-md text-[#1f2229] focus:border-indigo-500 overflow-hidden"
                 type="password"
                 name="password"
                 placeholder="password"

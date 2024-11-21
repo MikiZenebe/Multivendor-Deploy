@@ -87,8 +87,8 @@ const Shipping = () => {
     dispatch(
       place_order({
         price: totalPrice,
-        currency: selectedCurrency,
         products,
+        currency: selectedCurrency,
         shipping_fee: shippingFee,
         shippingMethod: shippingFee,
         shippingInfo: state,

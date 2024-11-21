@@ -21,7 +21,7 @@ const Stripe = ({ price, orderId }) => {
   const create_payment = async () => {
     try {
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/order/create-payment`,
+        "https://multivendor-server-z8kg.onrender.com/api/order/create-payment",
         { price },
         { withCredentials: true }
       );

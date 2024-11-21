@@ -112,7 +112,7 @@ const Login = () => {
                   <Link
                     target="_black"
                     className="text-[#EA4D1B] font-bold"
-                    to="http://localhost:3001/register"
+                    to="https://multivendor-admins.vercel.app/register"
                   >
                     Register
                   </Link>{" "}

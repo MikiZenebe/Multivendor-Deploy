@@ -13,6 +13,13 @@ const Order = () => {
     dispatch(get_order(orderId));
   }, [orderId]);
 
+  const statusClasses = {
+    placed: "bg-indigo-100 text-green-800",
+    processing: "bg-blue-100 text-blue-800",
+    delivered: "bg-green-100 text-white",
+    cancelled: "bg-red-100 text-red-800",
+  };
+
   return (
     <div className="bg-white p-5 flex flex-col gap-2">
       <h2 className="text-[#EA4D1B] font-semibold text-sm">
@@ -61,10 +68,9 @@ const Order = () => {
             Order status:{" "}
             <span
               className={`py-[4px] text-xs px-4 ${
-                myOrder.delivery_status === "paid"
-                  ? "bg-indigo-100 text-indigo-800"
-                  : "bg-red-100 text-red-800"
-              } rounded-md `}
+                statusClasses[myOrder.delivery_status] ||
+                "bg-gray-100 text-gray-800" // Default class for unknown statuses
+              } rounded-md`}
             >
               {myOrder.delivery_status}
             </span>

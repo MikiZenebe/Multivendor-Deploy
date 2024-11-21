@@ -6,6 +6,7 @@ import { PropagateLoader } from "react-spinners";
 import { overrideStyle } from "../../utils/utils";
 import { messageClear, seller_login } from "../../store/Reducers/authReducer";
 import OAuth from "../../layout/OAuth";
+import Logo from "../../assets/logo.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const Login = () => {
     e.preventDefault();
     dispatch(seller_login(state));
   };
-
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
@@ -38,20 +38,26 @@ const Login = () => {
       toast.error(errorMessage);
       dispatch(messageClear());
     }
+
     if (userInfo) {
       navigate("/");
     }
-  }, [dispatch, errorMessage, navigate, successMessage]);
-
+  }, [successMessage, errorMessage]);
   return (
-    <div className="min-w-screen min-h-screen flex justify-center items-center">
+    <div className="min-w-screen bg-[#F4F4F4] min-h-screen flex justify-center items-center">
       <div className="w-[350px] text-[#d0d2d6] p-2">
-        <div className="border border-[#EA4D1B] p-8 rounded-md">
-          <h2 className="text-xl mb-3 text-center text-[#EA4D1B] font-bold">
-            KeHager Bet Seller Panel
-          </h2>
+        <div className="border bg-white p-8 rounded-md">
+          <div className="h-[70px] flex justify-center items-center">
+            <div className="w-[180px] h-[50px]">
+              <img
+                className="w-full h-full object-cover"
+                src={Logo}
+                alt="image"
+              />
+            </div>
+          </div>
           <p className="text-sm mb-3 text-center text-gray-500">
-            Please login to your account
+            Please login to Seller account
           </p>
           <form onSubmit={submit}>
             <div className="flex flex-col w-full gap-1 mb-3 text-gray-600">

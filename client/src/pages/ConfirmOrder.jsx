@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FadeLoader from "react-spinners/FadeLoader";
 import axios from "axios";
@@ -55,7 +55,7 @@ const ConfirmOrder = () => {
     if (orderId) {
       try {
         await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/order/confirm/${orderId}`
+          `https://multivendor-server-z8kg.onrender.com/api/order/confirm/${orderId}`
         );
         localStorage.removeItem("orderId");
         setLoader(false);

@@ -15,7 +15,10 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin: [`${process.env.CLIENT_URL}`, `http://localhost:3001`],
+    origin: [
+      "https://multivendor-client.vercel.app",
+      "https://multivendor-admins.vercel.app",
+    ],
     credentials: true,
   })
 );

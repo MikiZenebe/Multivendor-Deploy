@@ -7,7 +7,7 @@ const Orders = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
-  const { myOrders, order } = useSelector((state) => state.order);
+  const { myOrders } = useSelector((state) => state.order);
   const [state, setState] = useState("all");
 
   useEffect(() => {
@@ -26,6 +26,13 @@ const Orders = () => {
         orderId: ord._id,
       },
     });
+  };
+
+  const statusClasses = {
+    placed: "bg-indigo-100 text-green-800",
+    processing: "bg-blue-100 text-blue-800",
+    delivered: "bg-green-100 text-white",
+    cancelled: "bg-red-100 text-red-800",
   };
 
   return (
@@ -77,25 +84,41 @@ const Orders = () => {
                   </td>
                   <td
                     scope="row"
-                    className="px-6 py-4 font-medium whitespace-nowrap"
+                    className="px-6 py-4 font-medium whitespace-nowrap flex items-center gap-1"
                   >
-                    ${o.price}
+                    {o.price}
+                    <span className="text-xs"> {o.currency}</span>
                   </td>
                   <td
                     scope="row"
                     className="px-6 py-4 font-medium whitespace-nowrap"
                   >
-                    {o.payment_status}
+                    <span
+                      className={`py-[4px] text-xs px-4 ${
+                        o.payment_status === "paid"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800" // Default class for unknown statuses
+                      } rounded-md`}
+                    >
+                      {o.payment_status}
+                    </span>
                   </td>
                   <td
                     scope="row"
                     className="px-6 py-4 font-medium whitespace-nowrap"
                   >
-                    {o.delivery_status}
+                    <span
+                      className={`py-[4px] text-xs px-4 ${
+                        statusClasses[o.delivery_status] ||
+                        "bg-gray-100 text-gray-800" // Default class for unknown statuses
+                      } rounded-md`}
+                    >
+                      {o.delivery_status}
+                    </span>
                   </td>
                   <td scope="row" className="px-6 py-4">
                     <Link to={`/dashboard/order/details/${o._id}`}>
-                      <span className="bg-green-100 text-green-800 text-sm font-normal mr-2 px-2.5 py-[1px] rounded">
+                      <span className="bg-gray-100 text-gray-800  text-sm font-medium mr-2 px-2.5 py-[1px] rounded">
                         view
                       </span>
                     </Link>

@@ -21,7 +21,12 @@ const sendVerificationEmail = async (user, res) => {
 
   const token = _id + uuid();
 
-  const link = `${process.env.APP_URL}/` + "api/verify/" + _id + "/" + token;
+  const link =
+    "https://multivendor-server-z8kg.onrender.com/" +
+    "api/verify/" +
+    _id +
+    "/" +
+    token;
 
   //   mail options
   const mailOptions = {
@@ -88,7 +93,11 @@ const sendSellerVerificationEmail = async (user, res) => {
   const token = _id + uuid();
 
   const link =
-    `${process.env.APP_URL}/` + "api/seller-verify/" + _id + "/" + token;
+    "https://multivendor-server-z8kg.onrender.com/" +
+    "api/seller-verify/" +
+    _id +
+    "/" +
+    token;
 
   //   mail options
   const mailOptions = {
@@ -152,7 +161,7 @@ const sendSellerVerificationEmail = async (user, res) => {
 // New method to send the purchase confirmation email
 const sendPurchaseConfirmationEmail = async (user, order, res) => {
   const { email, name } = user;
-  const { _id, price, delivery_status } = order;
+  const { _id, price, delivery_status, currency } = order;
 
   // Prepare the email content
   const mailOptions = {
@@ -168,7 +177,7 @@ const sendPurchaseConfirmationEmail = async (user, order, res) => {
             We are happy to inform you that your order has been successfully placed. Here are the details:
         </p>
         <p><b>Order ID:</b> ${_id}</p>
-        <p><b>Total Price:</b> $${price}</p>
+        <p><b>Total Price:</b> ${price} ${currency}</p>
         <p><b>Status:</b> ${delivery_status}</p>
         <br>
         <p>Thank you for shopping with us! Your order will be processed and shipped soon.</p>
@@ -196,7 +205,8 @@ const sendPurchaseConfirmationEmail = async (user, order, res) => {
 };
 
 const sendStatusUpdateEmail = async (user, order, status, res) => {
-  const { email, name } = user;
+  const email = user?.email;
+  const name = user?.name;
   const { _id, price } = order;
 
   // Prepare the email content based on the status change

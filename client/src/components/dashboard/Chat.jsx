@@ -14,7 +14,7 @@ import {
 } from "../../store/reducers/chatReducer";
 import toast from "react-hot-toast";
 
-const socket = io(`${import.meta.env.VITE_API_URL}`);
+const socket = io("https://multivendor-server-z8kg.onrender.com");
 
 const Chat = () => {
   const scrollRef = useRef();
@@ -136,7 +136,10 @@ const Chat = () => {
                     ) && (
                       <div className="w-[10px] h-[10px] rounded-full bg-green-500 absolute right-0 bottom-0"></div>
                     )}
-                    <img src="http://localhost:3000/images/user.png" alt="" />
+                    <img
+                      src="https://multivendor-client.vercel.app/images/user.png"
+                      alt=""
+                    />
                   </div>
                   <span>{currentFd.name}</span>
                 </div>
@@ -159,7 +162,7 @@ const Chat = () => {
                         >
                           <img
                             className="w-[30px] h-[30px] "
-                            src="http://localhost:3000/images/user.png"
+                            src="https://multivendor-client.vercel.app/images/user.png"
                             alt=""
                           />
                           <div className="p-2 bg-purple-500 text-white rounded-md">
@@ -176,7 +179,7 @@ const Chat = () => {
                         >
                           <img
                             className="w-[30px] h-[30px] "
-                            src="http://localhost:3000/images/user.png"
+                            src="https://multivendor-client.vercel.app/images/user.png"
                             alt=""
                           />
                           <div className="p-2 bg-cyan-500 text-white rounded-md">

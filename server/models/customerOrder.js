@@ -18,6 +18,14 @@ const customerOrder = new Schema(
       type: String,
       required: true,
     },
+    // paymentMethod: {
+    //   type: String, // Example: "stripe", "chapa", etc.
+    //   required: true,
+    // },
+    currency: {
+      type: String, // Example: "USD", "ETB", etc.
+      required: true,
+    },
     shippingInfo: {
       type: Object,
       required: true,

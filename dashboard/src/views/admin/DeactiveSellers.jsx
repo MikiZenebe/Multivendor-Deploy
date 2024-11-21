@@ -92,9 +92,7 @@ const DeactiveSellers = () => {
                   >
                     <img
                       className="w-[45px] h-[45px]"
-                      src={`${import.meta.env.VITE_MAIN_URL}/images/category/${
-                        d.image
-                      }.jpg`}
+                      src={`https://multivendor-client.vercel.app/images/category/${d.image}.jpg`}
                       alt=""
                     />
                   </td>

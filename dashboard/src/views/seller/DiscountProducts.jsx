@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Pagination from "../Pagination";
@@ -64,9 +64,7 @@ const DiscountProducts = () => {
                   >
                     <img
                       className="w-[45px] h-[45px]"
-                      src={`${
-                        import.meta.env.VITE_MAIN_URL
-                      }/images/category/${d}.jpg`}
+                      src={`https://multivendor-client.vercel.app/images/category/${d}.jpg`}
                       alt=""
                     />
                   </td>

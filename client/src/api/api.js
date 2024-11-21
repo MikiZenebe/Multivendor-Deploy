@@ -1,5 +1,5 @@
 import axios from "axios";
-const local = import.meta.env.VITE_API_URL;
+const local = "https://multivendor-server-z8kg.onrender.com";
 const production = "";
 const api = axios.create({
   baseURL: `${local}/api`,

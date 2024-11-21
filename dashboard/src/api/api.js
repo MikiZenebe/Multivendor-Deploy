@@ -1,8 +1,5 @@
 import axios from "axios";
-const local = import.meta.env.VITE_API_URL;
-const production = "";
 const api = axios.create({
-  baseURL: `${local}/api`,
-  withCredentials: true,
+  baseURL: "https://multivendor-server-z8kg.onrender.com/api",
 });
 export default api;

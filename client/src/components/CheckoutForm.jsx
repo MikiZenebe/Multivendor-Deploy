@@ -26,7 +26,8 @@ const CheckoutForm = ({ orderId }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${import.meta.env.VITE_API_URL}/order/confirm`,
+        return_url:
+          "https://multivendor-server-z8kg.onrender.com/order/confirm",
       },
     });
     if (error.type === "card_error" || error.type === "validation_error") {

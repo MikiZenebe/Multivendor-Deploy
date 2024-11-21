@@ -23,9 +23,7 @@ const OrderSuccess = () => {
   const verifyPayment = async (transactionId) => {
     try {
       const response = await axios.get(
-        `${
-          import.meta.env.VITE_API_URL
-        }/api/order/chapa/verify/${transactionId}`
+        `https://multivendor-server-z8kg.onrender.com/api/order/chapa/verify/${transactionId}`
       );
       if (response.data.status === "paid") {
         setMessage("succeeded");
@@ -45,7 +43,7 @@ const OrderSuccess = () => {
     if (orderId) {
       try {
         await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/order/confirm/${orderId}`
+          `https://multivendor-server-z8kg.onrender.com/api/order/confirm/${orderId}`
         );
         localStorage.removeItem("orderId");
         setLoader(false);
