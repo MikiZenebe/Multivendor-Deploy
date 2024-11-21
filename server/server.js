@@ -16,7 +16,7 @@ const server = http.createServer(app);
 app.use(
   cors({
     origin: [
-      "https://multivendor-client.vercel.app",
+      "https://multivendor-client.netlify.app",
       "https://multivendor-admins.vercel.app",
     ],
     credentials: true,
