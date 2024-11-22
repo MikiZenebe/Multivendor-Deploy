@@ -9694,7 +9694,7 @@
         v = u((0, e.useState)(null), 2),
         g = v[0],
         y = v[1],
-        b = "https://codewave-socialmedia.vercel.app/login",
+        b = "https://codewave-socialmedia.netlify.app/login",
         w = (function () {
           var e,
             t =
