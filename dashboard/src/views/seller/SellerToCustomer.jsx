@@ -113,7 +113,7 @@ const SellerToCustomer = () => {
                   <div className="relative">
                     <img
                       className="w-[38px] h-[38px] border-white border-2 max-w-[38px] p-[2px] rounded-full"
-                      src="https://multivendor-admins.netlify.app/images/admin.jpg"
+                      src="https://multivendor-admins.vercel.app/images/admin.jpg"
                       alt=""
                     />
                     {activeCustomer.some((a) => a.customerId === c.fdId) && (
@@ -136,7 +136,7 @@ const SellerToCustomer = () => {
                   <div className="relative">
                     <img
                       className="w-[42px] h-[42px] border-green-500 border-2 max-w-[42px] p-[2px] rounded-full"
-                      src="https://multivendor-admins.netlify.app/images/admin.jpg"
+                      src="https://multivendor-admins.vercel.app/images/admin.jpg"
                       alt=""
                     />
                     {activeCustomer.some(
@@ -174,7 +174,7 @@ const SellerToCustomer = () => {
                             <div>
                               <img
                                 className="w-[38px] h-[38px] border-2 border-white rounded-full max-w-[38px] p-[3px]"
-                                src="https://multivendor-admins.netlify.app/images/admin.jpg"
+                                src="https://multivendor-admins.vercel.app/images/admin.jpg"
                                 alt=""
                               />
                             </div>
@@ -198,7 +198,7 @@ const SellerToCustomer = () => {
                             <div>
                               <img
                                 className="w-[38px] h-[38px] border-2 border-white rounded-full max-w-[38px] p-[3px]"
-                                src="https://multivendor-admins.netlify.app/images/admin.jpg"
+                                src="https://multivendor-admins.vercel.app/images/admin.jpg"
                                 alt=""
                               />
                             </div>

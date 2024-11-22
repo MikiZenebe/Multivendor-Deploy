@@ -127,7 +127,7 @@ const Register = () => {
                 <p>
                   <Link
                     className="text-[#EA4D1B] font-bold"
-                    to="https://multivendor-admins.netlify.app/login"
+                    to="https://multivendor-admins.vercel.app/login"
                   >
                     Login
                   </Link>{" "}

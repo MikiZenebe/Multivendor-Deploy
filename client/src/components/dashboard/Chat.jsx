@@ -137,7 +137,7 @@ const Chat = () => {
                       <div className="w-[10px] h-[10px] rounded-full bg-green-500 absolute right-0 bottom-0"></div>
                     )}
                     <img
-                      src="https://multivendor-client.netlify.app//images/user.png"
+                      src="https://multivendor-client.vercel.app//images/user.png"
                       alt=""
                     />
                   </div>
@@ -162,7 +162,7 @@ const Chat = () => {
                         >
                           <img
                             className="w-[30px] h-[30px] "
-                            src="https://multivendor-client.netlify.app/images/user.png"
+                            src="https://multivendor-client.vercel.app/images/user.png"
                             alt=""
                           />
                           <div className="p-2 bg-purple-500 text-white rounded-md">
@@ -179,7 +179,7 @@ const Chat = () => {
                         >
                           <img
                             className="w-[30px] h-[30px] "
-                            src="https://multivendor-client.netlify.app/images/user.png"
+                            src="https://multivendor-client.vercel.app/images/user.png"
                             alt=""
                           />
                           <div className="p-2 bg-cyan-500 text-white rounded-md">

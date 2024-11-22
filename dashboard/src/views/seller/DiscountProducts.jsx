@@ -64,7 +64,7 @@ const DiscountProducts = () => {
                   >
                     <img
                       className="w-[45px] h-[45px]"
-                      src={`https://multivendor-client.netlify.app/images/category/${d}.jpg`}
+                      src={`https://multivendor-client.vercel.app/images/category/${d}.jpg`}
                       alt=""
                     />
                   </td>
