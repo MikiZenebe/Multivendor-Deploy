@@ -96,7 +96,7 @@ const Login = () => {
                 "Login"
               )}
             </button>
-            <div className="flex items-center mb-3 gap-3 justify-center text-gray-600">
+            <div className="flex items-center mb-3 gap-3 justify-center text-gray-600 flex-col">
               <p>
                 Already have an account ?{" "}
                 <Link to="/register" className="text-[#EA4D1B] font-bold">
