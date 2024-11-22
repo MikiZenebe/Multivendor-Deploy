@@ -17,7 +17,7 @@ app.use(
   cors({
     origin: [
       "https://multivendor-client.netlify.app",
-      "https://multivendor-admins.vercel.app",
+      "https://multivendor-admins.netlify.app",
     ],
     credentials: true,
   })
