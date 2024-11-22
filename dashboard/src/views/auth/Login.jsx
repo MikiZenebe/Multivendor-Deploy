@@ -103,6 +103,13 @@ const Login = () => {
                   Signup here
                 </Link>
               </p>
+
+              <p>
+                For SuperAdmin
+                <Link to="/admin/login" className="text-[#EA4D1B] font-bold">
+                  Here
+                </Link>
+              </p>
             </div>
             <div className="w-full flex justify-center items-center mb-3">
               <div className="w-[45%] bg-slate-700 h-[1px]"></div>
