@@ -5,6 +5,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { useState } from "react";
+import { baseURL } from "../api/api";
 const CheckoutForm = ({ orderId }) => {
   localStorage.setItem("orderId", orderId);
   const stripe = useStripe();
@@ -26,8 +27,7 @@ const CheckoutForm = ({ orderId }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url:
-          "https://multivendor-server-z8kg.onrender.com/order/confirm",
+        return_url: baseURL + "/order/confirm",
       },
     });
     if (error.type === "card_error" || error.type === "validation_error") {

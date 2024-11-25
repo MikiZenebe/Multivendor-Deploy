@@ -397,8 +397,8 @@ class orderController {
         email: user?.email,
         name: user?.name,
         tx_ref: `txn-${Date.now()}`,
-        callback_url: `https://multivendor-server-z8kg.onrender.com/api/order/confirm/${orderId}`,
-        return_url: `https://multivendor-client.netlify.app/order/success/${orderId}`,
+        callback_url: `${process.env.APP_URL}/api/order/confirm/${orderId}`,
+        return_url: `${process.env.CLIENT_URL}/order/success/${orderId}`,
       };
 
       // Initiate payment request to Chapa

@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api/api";
+import { API } from "../../api/api";
 
 export const add_product = createAsyncThunk(
   "product/add_product",
   async (product, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.post("/product-add", product, {
+      const { data } = await API.post("/product-add", product, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -19,7 +19,7 @@ export const update_product = createAsyncThunk(
   "product/updateProduct",
   async (product, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.post("/product-update", product, {
+      const { data } = await API.post("/product-update", product, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -33,7 +33,7 @@ export const delete_product = createAsyncThunk(
   "product/deleteProduct",
   async (productId, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.delete(`/product-delete/${productId}`, {
+      const { data } = await API.delete(`/product-delete/${productId}`, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -54,7 +54,7 @@ export const product_image_update = createAsyncThunk(
       formData.append("oldImage", oldImage);
       formData.append("newImage", newImage);
       formData.append("productId", productId);
-      const { data } = await api.post("/product-image-update", formData, {
+      const { data } = await API.post("/product-image-update", formData, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -71,7 +71,7 @@ export const get_all_products = createAsyncThunk(
     { rejectWithValue, fulfillWithValue }
   ) => {
     try {
-      const { data } = await api.get(
+      const { data } = await API.get(
         `/all-products?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`,
         { withCredentials: true }
       );
@@ -89,7 +89,7 @@ export const get_products = createAsyncThunk(
     { rejectWithValue, fulfillWithValue }
   ) => {
     try {
-      const { data } = await api.get(
+      const { data } = await API.get(
         `/products-get?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`,
         { withCredentials: true }
       );
@@ -104,7 +104,7 @@ export const get_product = createAsyncThunk(
   "product/get_product",
   async (productId, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.get(`/product-get/${productId}`, {
+      const { data } = await API.get(`/product-get/${productId}`, {
         withCredentials: true,
       });
       return fulfillWithValue(data);

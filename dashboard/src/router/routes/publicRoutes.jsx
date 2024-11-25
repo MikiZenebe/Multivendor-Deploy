@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Success from "../../views/Success";
 import Login from "../../views/auth/Login";
 import Register from "../../views/auth/Register";
@@ -5,15 +6,17 @@ import AdminLogin from "../../views/auth/AdminLogin";
 import Home from "../../views/Home";
 import UnAuthorized from "../../views/UnAuthorized";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const PublicRoute = ({ element, restricted }) => {
-  const { userInfo } = useSelector((state) => state.auth);
+  const userInfo = useSelector(
+    (state) => state.auth.userInfo,
+    (prev, next) => prev === next
+  );
 
   // Redirect to Home if user is authenticated and accessing restricted routes (like login/register)
   if (userInfo && restricted) {
-    return <Navigate to="/" replace />;
+    return <Home />; // Render the Home component directly instead of navigating
   }
 
   return element;

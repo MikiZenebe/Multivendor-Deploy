@@ -21,12 +21,7 @@ const sendVerificationEmail = async (user, res) => {
 
   const token = _id + uuid();
 
-  const link =
-    "https://multivendor-server-z8kg.onrender.com/" +
-    "api/verify/" +
-    _id +
-    "/" +
-    token;
+  const link = `${process.env.APP_URL}/` + "api/verify/" + _id + "/" + token;
 
   //   mail options
   const mailOptions = {
@@ -93,11 +88,7 @@ const sendSellerVerificationEmail = async (user, res) => {
   const token = _id + uuid();
 
   const link =
-    "https://multivendor-server-z8kg.onrender.com/" +
-    "api/seller-verify/" +
-    _id +
-    "/" +
-    token;
+    `${process.env.APP_URL}/` + "api/seller-verify/" + _id + "/" + token;
 
   //   mail options
   const mailOptions = {

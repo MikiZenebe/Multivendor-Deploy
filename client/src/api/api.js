@@ -1,7 +1,10 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: `https://multivendor-server-z8kg.onrender.com/api`,
+const apiUrl = import.meta.env.VITE_API_URL;
+
+export const API = axios.create({
+  baseURL: `${apiUrl}/api`,
   withCredentials: true,
 });
-export default api;
+
+export const baseURL = "https://multivendor-server-z8kg.onrender.com";

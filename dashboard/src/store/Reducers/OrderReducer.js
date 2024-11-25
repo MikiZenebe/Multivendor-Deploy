@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api/api";
+import { API } from "../../api/api";
 
 export const get_admin_orders = createAsyncThunk(
   "order/get_admin_orders",
@@ -8,7 +8,7 @@ export const get_admin_orders = createAsyncThunk(
     { rejectWithValue, fulfillWithValue }
   ) => {
     try {
-      const { data } = await api.get(
+      const { data } = await API.get(
         `/admin/orders?page=${page}&searchValue=${searchValue}&parPage=${parPage}`,
         { withCredentials: true }
       );
@@ -26,7 +26,7 @@ export const get_seller_orders = createAsyncThunk(
     { rejectWithValue, fulfillWithValue }
   ) => {
     try {
-      const { data } = await api.get(
+      const { data } = await API.get(
         `/seller/orders/${sellerId}?page=${page}&searchValue=${searchValue}&parPage=${parPage}`,
         { withCredentials: true }
       );
@@ -41,7 +41,7 @@ export const get_admin_order = createAsyncThunk(
   "order/get_admin_order",
   async (orderId, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.get(`/admin/order/${orderId}`, {
+      const { data } = await API.get(`/admin/order/${orderId}`, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -55,7 +55,7 @@ export const get_seller_order = createAsyncThunk(
   "order/get_seller_order",
   async (orderId, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.get(`/seller/order/${orderId}`, {
+      const { data } = await API.get(`/seller/order/${orderId}`, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -69,7 +69,7 @@ export const admin_order_status_update = createAsyncThunk(
   "order/admin_order_status_update",
   async ({ orderId, info }, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.put(
+      const { data } = await API.put(
         `/admin/order-status/update/${orderId}`,
         info,
         { withCredentials: true }
@@ -85,7 +85,7 @@ export const seller_order_status_update = createAsyncThunk(
   "order/seller_order_status_update",
   async ({ orderId, info }, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.put(
+      const { data } = await API.put(
         `/seller/order-status/update/${orderId}`,
         info,
         { withCredentials: true }

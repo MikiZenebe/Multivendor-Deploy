@@ -7,7 +7,7 @@ import { RiProductHuntLine } from "react-icons/ri";
 import { BsChat, BsHeart } from "react-icons/bs";
 import { TfiLock } from "react-icons/tfi";
 import { BiLogInCircle } from "react-icons/bi";
-import api from "../api/api";
+import { API } from "../api/api";
 import { useDispatch } from "react-redux";
 import { user_reset } from "../store/reducers/authReducer";
 import { reset_count } from "../store/reducers/cardReducer";
@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const logout = async () => {
     try {
-      const { data } = await api.get("/customer/logout");
+      const { data } = await API.get("/customer/logout");
       localStorage.removeItem("customerToken");
       dispatch(user_reset());
       dispatch(reset_count());

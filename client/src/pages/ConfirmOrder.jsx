@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FadeLoader from "react-spinners/FadeLoader";
-import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 import error from "../assets/error.png";
 import success from "../assets/success.png";
 import { stripe_sky } from "../utils/config";
+import { API } from "../api/api";
 const load = async () => {
   return await loadStripe(stripe_sky);
 };
@@ -54,9 +54,7 @@ const ConfirmOrder = () => {
     const orderId = localStorage.getItem("orderId");
     if (orderId) {
       try {
-        await axios.get(
-          `https://multivendor-server-z8kg.onrender.com/api/order/confirm/${orderId}`
-        );
+        await API.get(`/order/confirm/${orderId}`);
         localStorage.removeItem("orderId");
         setLoader(false);
       } catch (error) {

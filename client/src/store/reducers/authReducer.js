@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api/api";
+import { API } from "../../api/api";
 
 export const customer_register = createAsyncThunk(
   "auth/customer_register",
   async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.post("/customer/customer-register", info);
+      const { data } = await API.post("/customer/customer-register", info);
       localStorage.setItem("customerToken", data.token);
       return fulfillWithValue(data);
     } catch (error) {
@@ -19,7 +19,7 @@ export const google_register = createAsyncThunk(
   async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
       // You might want to call your backend to register the user or just store user info
-      const { data } = await api.post("/google", info); // Backend route for Google login
+      const { data } = await API.post("/google", info); // Backend route for Google login
       console.log(data);
       localStorage.setItem("customerToken", data.token);
       return fulfillWithValue(data); // Return data containing token and user info
@@ -36,7 +36,7 @@ export const customer_login = createAsyncThunk(
   "auth/customer_login",
   async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.post("/customer/customer-login", info);
+      const { data } = await API.post("/customer/customer-login", info);
       localStorage.setItem("customerToken", data.token);
 
       return fulfillWithValue(data);

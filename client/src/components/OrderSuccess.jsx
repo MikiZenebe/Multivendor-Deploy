@@ -1,7 +1,7 @@
 // OrderSuccess.js
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { API } from "../api/api";
 
 const OrderSuccess = () => {
   const [loader, setLoader] = useState(true);
@@ -22,9 +22,7 @@ const OrderSuccess = () => {
   // Function to verify the payment with Chapa
   const verifyPayment = async (transactionId) => {
     try {
-      const response = await axios.get(
-        `https://multivendor-server-z8kg.onrender.com/api/order/chapa/verify/${transactionId}`
-      );
+      const response = await API.get(`/order/chapa/verify/${transactionId}`);
       if (response.data.status === "paid") {
         setMessage("succeeded");
         updatePaymentStatus();
@@ -42,9 +40,7 @@ const OrderSuccess = () => {
     const orderId = localStorage.getItem("orderId");
     if (orderId) {
       try {
-        await axios.get(
-          `https://multivendor-server-z8kg.onrender.com/api/order/confirm/${orderId}`
-        );
+        await API.get(`/order/confirm/${orderId}`);
         localStorage.removeItem("orderId");
         setLoader(false);
       } catch (error) {

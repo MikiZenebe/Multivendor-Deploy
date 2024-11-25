@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-hot-toast";
+import { API } from "../api/api";
 
 export default function Chapa({ orderId, price }) {
   const [loading, setLoading] = useState(false);
@@ -15,8 +15,8 @@ export default function Chapa({ orderId, price }) {
     setError("");
 
     try {
-      const result = await axios.post(
-        "https://multivendor-server-z8kg.onrender.com/api/order/create-chapa",
+      const result = await API.post(
+        "/order/create-chapa",
         { orderId, price },
         { withCredentials: true }
       );
@@ -40,9 +40,7 @@ export default function Chapa({ orderId, price }) {
   // Handles callback from Chapa to verify the payment status
   const verifyPayment = async () => {
     try {
-      const response = await axios.get(
-        `https://multivendor-server-z8kg.onrender.com/api/order/chapa-verify/${orderId}`
-      );
+      const response = await API.get(`/order/chapa-verify/${orderId}`);
       const { payment_status } = response.data;
 
       if (payment_status === "paid") {

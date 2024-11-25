@@ -13,8 +13,9 @@ import {
   messageClear,
 } from "../../store/reducers/chatReducer";
 import toast from "react-hot-toast";
+import { baseURL } from "../../api/api";
 
-const socket = io("https://multivendor-server-z8kg.onrender.com");
+const socket = io(baseURL);
 
 const Chat = () => {
   const scrollRef = useRef();

@@ -1,11 +1,10 @@
-import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-import axios from "axios";
 import { useState } from "react";
 import CheckoutForm from "./CheckoutForm";
 import { stripe_sky } from "../utils/config";
+import { API } from "../api/api";
 
 const stripePromise = loadStripe(stripe_sky);
 
@@ -20,8 +19,8 @@ const Stripe = ({ price, orderId }) => {
   };
   const create_payment = async () => {
     try {
-      const { data } = await axios.post(
-        "https://multivendor-server-z8kg.onrender.com/api/order/create-payment",
+      const { data } = await API.post(
+        "/order/create-payment",
         { price },
         { withCredentials: true }
       );

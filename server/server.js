@@ -13,12 +13,12 @@ const _dirname = path.resolve(path.dirname(""));
 
 const server = http.createServer(app);
 
+const clientURL = process.env.CLIENT_URL;
+const dashboardURL = process.env.DASHBOARD_URL;
+
 app.use(
   cors({
-    origin: [
-      "https://multivendor-client.netlify.app",
-      "https://multivendor-admins.netlify.app",
-    ],
+    origin: [clientURL, dashboardURL],
     credentials: true,
   })
 );
